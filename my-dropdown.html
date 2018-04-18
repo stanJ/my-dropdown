@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>my dropdown</title>
+  <link rel="stylesheet" href="css/my-dropdown.css">
+  <style>
+    .select-wrapper{
+      width: 200px;
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <select class="my-dropdown">
+      <option value="11">aa</option>
+      <option value="22">bb</option>
+      <option value="33">cc</option>
+    </select>
+    <div class="select-wrapper">
+      <select class="my-dropdown">
+        <option value="11">aa</option>
+        <option value="22">bb</option>
+        <option value="33">cc</option>
+      </select>
+      <div class="jc-dropdown">
+        <input type="hidden" value="11">
+        <i class="jc-icon jc-dropdown__icon"></i>
+        <span class="jc-dropdown__text">aa</span>
+        <ul class="jc-dropdown-menu">
+          <li class="jc-dropdown-menu__item" value="11">aa</li>
+          <li class="jc-dropdown-menu__item" value="22">bb</li>
+          <li class="jc-dropdown-menu__item" value="33">cc</li>
+        </ul>
+      </div>
+    </div>
+    
+
+  </div>
+  <script src="lib/jquery-3.2.1.js"></script>
+  <script src="js/my-dropdown.js"></script>
+</body>
+</html>
