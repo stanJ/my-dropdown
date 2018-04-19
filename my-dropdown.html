@@ -9,37 +9,73 @@
     .select-wrapper{
       width: 200px;
       height: 40px;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
   <div id="app">
+    <p>原生select控件</p>
     <select class="my-dropdown">
       <option value="11">aa</option>
       <option value="22">bb</option>
       <option value="33">cc</option>
     </select>
+    <p>封装好的jQuery插件</p>
     <div class="select-wrapper">
-      <select class="my-dropdown">
+      <select class="my-dropdown1">
         <option value="11">aa</option>
         <option value="22">bb</option>
         <option value="33">cc</option>
       </select>
-      <div class="jc-dropdown">
-        <input type="hidden" value="11">
-        <i class="jc-icon jc-dropdown__icon"></i>
-        <span class="jc-dropdown__text">aa</span>
-        <ul class="jc-dropdown-menu">
-          <li class="jc-dropdown-menu__item" value="11">aa</li>
-          <li class="jc-dropdown-menu__item" value="22">bb</li>
-          <li class="jc-dropdown-menu__item" value="33">cc</li>
-        </ul>
-      </div>
     </div>
-    
+    <button type="button" onclick="setValue()">点击设置值为bb</button>
+    <button type="button" onclick="getValue()">点击获取当前值</button>
+    <p>封装好的vue组件</p>
+    <div class="select-wrapper">
+      <jc-select :options="options" v-model="value"></jc-select>
+    </div>
 
   </div>
-  <script src="lib/jquery-3.2.1.js"></script>
-  <script src="js/my-dropdown.js"></script>
+  <!-- <script src="lib/jquery-3.2.1.js"></script> -->
+  <script src="lib/vue.js"></script>
+  <!-- <script src="js/my-dropdown.js"></script> -->
+  <script src="js/vue-my-dropdown.js"></script>
+  <!-- <script>
+    function setValue() {
+      $(".my-dropdown1").dropdown('set', '22');
+    }
+    function getValue() {
+      var value = $(".my-dropdown1").dropdown('get');
+      alert(value);
+    }
+    $(".my-dropdown1").dropdown({
+      onChange: function (e) {
+        console.log('e', e);
+      }
+    });
+  </script> -->
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        options: [
+          {
+            value: '11',
+            text: 'aa'
+          },
+          {
+            value: '22',
+            text: 'bb'
+          },
+          {
+            value: '33',
+            text: 'cc'
+          },
+        ],
+        value: '11'
+      }
+    })
+  </script>
 </body>
 </html>
