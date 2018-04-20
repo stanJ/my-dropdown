@@ -64,7 +64,6 @@
       }
       $el.on('click.dropdown', function (e) {
         if (!$(this).hasClass('active')) {
-          e.stopPropagation();
           $(this).addClass('active');
           _this._activateItem($(this));
         }
@@ -75,7 +74,8 @@
         _this._setFunc($el, value, text);
       })
       $(document).on('click.dropdown', function (e) {
-        $(".jc-dropdown, .jc-dropdown-menu__item").removeClass('active');
+        $(".jc-dropdown").not(e.target).removeClass('active');
+        $(".jc-dropdown").not(e.target).find('.jc-dropdown-menu__item').removeClass('active');
       })
     },
     _generateHtml: function ($el) {

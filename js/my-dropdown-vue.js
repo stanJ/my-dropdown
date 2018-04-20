@@ -1,21 +1,22 @@
 Vue.component('jc-select', {
   props: ['options', 'value'],
   template: `
-  <div class="jc-dropdown" :class="{active: isActive}" @click.stop="handleClick">
-    <input type="hidden" :value="value">
+  <div class="jc-dropdown" :class="{active: isActive}" @click="handleClick">
+    <input type="hidden" :value="partValue">
     <i class="jc-icon jc-dropdown__icon"></i>
     <span class="jc-dropdown__text">{{curText}}</span>
     <ul class="jc-dropdown-menu">
       <li class="jc-dropdown-menu__item" 
           :class="{active: item.value == value}" :value="item.value" 
           v-for="item in options"
-          @click="handleItemClick(item)">{{item.text}}</li>
+          @click.stop="handleItemClick(item)">{{item.text}}</li>
     </ul>
   </div>
   `,
   data: function () {
     return {
       isActive: false,
+      partValue: this.value
     }
   },
   computed: {
@@ -24,19 +25,25 @@ Vue.component('jc-select', {
     },
   },
   created: function () {
-    var vm = this;
+    var vm = this
     document.addEventListener('click', function (e) {
-      vm.isActive = false;
+      if (e.target != vm.$el) {
+        vm.isActive = false
+      }
     })
   },
   methods: {
     handleItemClick: function (item) {
-      this.value = item.value
-      this.$emit('input', this.value)
+      this.partValue = item.value
+      this.$emit('input', this.partValue)
+      this.isActive = false
     },
-    handleClick: function () {
+    handleClick: function (e) {
       if (!this.isActive) {
         this.isActive = true
+        // e.stopPropagation()
+      } else {
+        this.isActive = false
       }
     },
     getCurText: function () {

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>my dropdown</title>
+  <link rel="stylesheet" href="css/my-dropdown.css">
+  <style>
+    .select-wrapper{
+      width: 200px;
+      height: 40px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p>原生select控件</p>
+    <select class="my-dropdown">
+      <option value="11">aa</option>
+      <option value="22">bb</option>
+      <option value="33">cc</option>
+    </select>
+    <p>封装好的vue组件</p>
+    <div class="select-wrapper">
+      <jc-select :options="options" v-model="value"></jc-select>
+    </div>
+    <div class="select-wrapper">
+      <jc-select :options="options" v-model="value_1"></jc-select>
+    </div>
+    <p><a href="my-dropdown-jquery.html">查看封装好的jQuery组件</a></p>
+  </div>
+  <script src="lib/vue.js"></script>
+  <script src="js/my-dropdown-vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        options: [
+          {
+            value: '11',
+            text: 'aa'
+          },
+          {
+            value: '22',
+            text: 'bb'
+          },
+          {
+            value: '33',
+            text: 'cc'
+          },
+        ],
+        value: '11',
+        value_1: '11'
+      },
+      watch: {
+        value: function (newVal, oldVal) {
+          console.log('new value ' + newVal)
+        },
+        value_1: function (newVal, oldVal) {
+          console.log('new value ' + newVal)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

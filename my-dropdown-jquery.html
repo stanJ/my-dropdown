@@ -31,17 +31,19 @@
     </div>
     <button type="button" onclick="setValue()">点击设置值为bb</button>
     <button type="button" onclick="getValue()">点击获取当前值</button>
-    <p>封装好的vue组件</p>
     <div class="select-wrapper">
-      <jc-select :options="options" v-model="value"></jc-select>
+      <select class="my-dropdown2">
+        <option value="11">aa</option>
+        <option value="22">bb</option>
+        <option value="33">cc</option>
+      </select>
     </div>
+    <p><a href="my-dropdown-vue.html">查看封装好的vue组件</a></p>
 
   </div>
-  <!-- <script src="lib/jquery-3.2.1.js"></script> -->
-  <script src="lib/vue.js"></script>
-  <!-- <script src="js/my-dropdown.js"></script> -->
-  <script src="js/vue-my-dropdown.js"></script>
-  <!-- <script>
+  <script src="lib/jquery-3.2.1.js"></script>
+  <script src="js/my-dropdown-jquery.js"></script>
+  <script>
     function setValue() {
       $(".my-dropdown1").dropdown('set', '22');
     }
@@ -54,28 +56,11 @@
         console.log('e', e);
       }
     });
-  </script> -->
-  <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        options: [
-          {
-            value: '11',
-            text: 'aa'
-          },
-          {
-            value: '22',
-            text: 'bb'
-          },
-          {
-            value: '33',
-            text: 'cc'
-          },
-        ],
-        value: '11'
+    $(".my-dropdown2").dropdown({
+      onChange: function (e) {
+        console.log('e', e);
       }
-    })
+    });
   </script>
 </body>
 </html>
